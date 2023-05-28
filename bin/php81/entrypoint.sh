@@ -4,4 +4,4 @@
 php-fpm &
 
 # Keep the container running
-apache2
+tail -f /dev/null
