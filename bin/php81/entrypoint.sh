@@ -3,5 +3,6 @@
 # Start PHP-FPM in the background
 php-fpm &
 
-# Keep the container running
-tail -f /dev/null
+# Start Apache in the foreground
+exec apache2ctl -DFOREGROUND
+

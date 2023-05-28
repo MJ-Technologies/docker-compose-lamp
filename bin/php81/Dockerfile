@@ -34,7 +34,8 @@ RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
 
 # Enable Apache modules and HTTP/2
-RUN a2enmod ssl rewrite headers http2 \
+RUN a2enmod php ssl rewrite headers http2 \
+# Keep the container running
     && echo "Protocols h2 http/1.1" >> /etc/apache2/conf-available/http2.conf \
     && a2enconf http2
 
