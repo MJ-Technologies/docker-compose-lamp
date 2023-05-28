@@ -47,3 +47,12 @@ RUN rm -rf /var/www/html/* /usr/src/*
 # Set user/group ID for www-data
 RUN usermod -u 1001 www-data
 
+# Copy the custom entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose PHP-FPM port
+EXPOSE 9000
+
+# Set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
