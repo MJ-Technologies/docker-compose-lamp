@@ -99,22 +99,6 @@ RUN a2enmod ssl && a2enmod rewrite
 # Enable apache modules
 RUN a2enmod rewrite headers
 
-# Disable mod_php
-RUN a2dismod php
-
-# Disable MPM module
-RUN a2dismod mpm_prefork
-
-# enable the Event MPM, Fast_CGI, and setenvif modules as shown
-RUN a2enmod mpm_event proxy_fcgi setenvif 
-
-# Install PHP-FPM
-RUN docker-php-ext-install fpm \
-    && rm -rf /var/lib/apt/lists/*
-
-# Enable PHP-FPM
-RUN a2enconf php-fpm
-
 # Restart Apache
 RUN service apache2 restart
 
@@ -130,4 +114,4 @@ RUN rm -rf /usr/src/*
 RUN usermod -u 1001 www-data
 
 # Set PHP-FPM as the entrypoint
-ENTRYPOINT ["php-fpm", "-F"]
+
